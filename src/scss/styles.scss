@@ -1,0 +1,191 @@
+@import "mixins";
+@import "fonts";
+
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: $font--rockwell-condensed;
+    font-size: 18px;
+    color: #222;
+    line-height: 1.38;
+}
+
+body, body *,
+body *::before,
+body *::after {
+    box-sizing: border-box;
+}
+
+.button {
+    position: relative;
+    display: inline-block;
+    width: 145px;
+    margin: 10px 0 10px 5px;
+    padding: 5px 10px;
+    font-size: 22px;
+    background: tomato;
+    color: white;
+    text-shadow: 1px 1px 1px #333;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 3px;
+    user-select: none;
+    text-transform: capitalize;
+
+    &:first-of-type {
+        margin-left: 10px;
+    }
+
+    &.-preview {
+        cursor: zoom-out;
+        transition: all 300ms;
+        opacity: 1;
+        @include context('.button', '.SoB.-drawing .button') {
+            opacity: 0;
+            cursor: default;
+        }
+        @include context('.button', '.SoB:not(.-drawing) .button') {
+            &:hover ~ .sourceElement {
+                transform: scale(0.444, 0.444);
+                top: -334px;
+                left: -230px;
+            }
+        }
+    }
+}
+
+.sourceElement {
+    display: inline-block;
+    position: relative;
+    width: 900px;
+    height: 1200px;
+
+    &:hover .draggable {
+        outline: 1px solid #ADD8E6;
+    }
+
+    .draggable:hover {
+        outline: 1px solid red !important;
+        cursor: move;
+    }
+
+    .theHelper {
+        background: maroon;
+        border-radius: 50%;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        color: white;
+        padding: 2px 4px;
+        vertical-align: top;
+        position: absolute;
+        width: 22px;
+        height: 22px;
+        text-align: center;
+        line-height: 1.2;
+        cursor: pointer;
+        border: 1px solid #222;
+        text-shadow: none;
+
+        &.theX {
+            top: 5px;
+            left: 5px;
+        }
+
+        &.theMinus {
+            top: 5px;
+            left: 30px;
+            line-height: 1;
+        }
+
+        &.thePlus {
+            top: 5px;
+            left: 55px;
+        }
+
+        &.theRotateLeft {
+            top: 5px;
+            left: 80px;
+        }
+
+        &.theRotateRight {
+            top: 5px;
+            left: 105px;
+        }
+
+        &.theBefore {
+            bottom: 5px;
+            left: 5px;
+            line-height: 1;
+            background: teal;
+        }
+
+        &.theAfter {
+            bottom: 5px;
+            left: 30px;
+            line-height: 1;
+            background: teal;
+        }
+
+        &.theShadow {
+            bottom: 5px;
+            left: 55px;
+            line-height: 1;
+            background: teal;
+        }
+
+        &.theShadowColor {
+            bottom: 5px;
+            left: 80px;
+            line-height: 1;
+            background: teal;
+        }
+
+        &.theColor {
+            bottom: 5px;
+            left: 105px;
+            line-height: 1;
+            background: teal;
+            padding: 0;
+            border-radius: 3px;
+            margin: 0;
+            border: 0;
+        }
+    }
+
+    .image .theColor {
+        display: none;
+    }
+}
+
+
+.card-output {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+
+    @include context('.card-output', '.SoB.-drawing .card-output') {
+        &:after {
+            content: 'drawing card...';
+            position: absolute;
+            display: block;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            opacity: .8;
+            padding: 220px 0;
+            background: red;
+            border-radius: 5px;
+            font-size: 60px;
+            color: white;
+            text-align: center;
+        }
+    }
+}
+
+#canvas {
+    width: 400px;
+}

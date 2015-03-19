@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>SoB - Card Generator</title>
+    <meta name="description" content="Shadows of Brimstone - Character Sheet Generator">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="icon" href="favicon.ico?v=1.2" type="image/x-icon"> -->
+    <link rel="stylesheet" href="css/styles.css">
+    </head>
+    <body>
+        <div data-js="SoB" class="SoB">
+            <input type="file" id="file-input" style="display:none;"/>
+            <div class="button -drawit" id="btnDrawit">draw it</div>
+            <div class="button -text" id="btnAddText">add text</div>
+            <div class="button -image" id="btnAddImage">add image</div>
+            <div class="button -background" id="btnBackground">background</div>
+            <div class="button -preview">Preview</div>
+            <div class="sourceElement">
+                <style type="text/css">
+                    .card-input, .card-input::before, .card-input::after,
+                    .card-input *, .card-input *::before, .card-input *::after {
+                        box-sizing: border-box;
+                    }
+                    .card-input {
+                        top: 0;
+                        right: 0;
+                        bottom: 0;
+                        left: 0;
+                        position: absolute;
+                        margin: 0;
+                        padding: 0;
+                        border-radius: 15px;
+                        background-image: url('assets/card-gear.jpg');
+                        background-size: fit;
+                    }
+                    .draggable {
+                        display: inline-block;
+                        position: absolute;
+                        min-width: 80px;
+                        padding: 20px;
+                        line-height: 1;
+                    }
+                    .text {
+                        min-height: 30px;
+                        font-size: 50px;
+                        color: white;
+                        font-family: 'dust_westregular';
+                    }
+                    .text.-noshadow {
+                        text-shadow: none !important;
+                    }
+                    .text.-shadow {
+                        text-shadow: 1px 1px 12px #777, -1px -1px 12px #777, 1px -1px 12px #777, -1px 1px 12px #777;
+                    }
+                    .image.-shadow img {
+                        filter: drop-shadow(5px 5px 5px #777);
+                        -webkit-filter: drop-shadow(5px 5px 5px #777);
+                    }
+                    .image.-noshadow img {
+                        filter: none !important;
+                        -webkit-filter: none !important;
+                    }
+                    .-bold {
+                        font-weight: 600;
+                    }
+                    .-italic {
+                        font-style: italic;
+                    }
+                    .-underline {
+                        text-decoration: underline;
+                    }
+
+                    .font--aquilinetwo {
+                        font-family: $font--aquilinetwo;
+                    }
+                    .font--berylium-regular {
+                        font-family: $font--berylium-regular;
+                    }
+                    .font--berylium-italic {
+                        font-family: $font--berylium-italic;
+                    }
+                    .font--dust-west {
+                        font-family: 'dust_westregular';
+                    }
+                    .font--rockwell-condensed {
+                        font-family: $font--rockwell-condensed;
+                    }
+
+                    @font-face {
+                        font-family: 'dust_westregular';
+                        src: url('../fonts/Dust West-webfont.eot');
+                        src: url('../fonts/Dust West-webfont.eot?#iefix') format('embedded-opentype'),
+                             url('../fonts/Dust West-webfont.woff2') format('woff2'),
+                             url('../fonts/Dust West-webfont.woff') format('woff'),
+                             url('../fonts/Dust West-webfont.ttf') format('truetype'),
+                             url('../fonts/Dust West-webfont.svg#dust_westregular') format('svg');
+                        font-weight: normal;
+                        font-style: normal;
+                    }
+                </style>
+
+                <div class="card-input"></div>
+            </div>
+
+            <div class="card-output"></div>
+        </div>
+
+        <script src="js/card.min.js"></script>
+    </body>
+</html>

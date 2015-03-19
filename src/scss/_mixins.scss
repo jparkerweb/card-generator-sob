@@ -1,0 +1,32 @@
+// ************
+// ** Mixins **
+// ************
+
+
+// ----------------------------------------
+// -- at-root parent reference "context" --
+// -----------------------------------------------------------------------
+// -- example - make an element visible when some parent
+// --           element is changed/altered
+// --
+// --    .main {
+// --        .component {
+// --            .element {
+// --                visibility: hidden;
+// --
+// --                @include context('.main', '.main.is-altered') {
+// --                    visibility: visible;
+// --                }
+// --            }
+// --        }
+// --    }
+// --
+// --    this will compile to:
+// --        .main .component .element { visibility: hidden; }
+// --        .main.is-altered .component .element { visibility: visible; }
+// -----------------------------------------------------------------------
+@mixin context($old-context, $new-context) {
+    @at-root #{selector-replace(&, $old-context, $new-context)} {
+        @content;
+    }
+}
