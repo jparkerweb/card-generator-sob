@@ -1,8 +1,8 @@
 {
-  "name": "SoB-Character-Sheets",
+  "name": "card-generator-sob",
   "version": "0.0.1",
   "private": true,
-  "description": "Shadows of Brimstone - Character Sheet Generator",
+  "description": "Shadows of Brimstone - Card Generator",
   "homepage": "",
   "author": "Justin Parker",
   "license": "MIT",

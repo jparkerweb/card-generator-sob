@@ -42,7 +42,11 @@ function drawIt() {
         canv.height = elemHeight;
         canv.id = "canvas";
 
-    $(".card-output").html(canv);
+    var saveCardText = "<span class=\"save-card\">Right click and \"Save Image\"</span>";
+
+    $(".card-output")
+        .html(canv)
+        .append(saveCardText);
 
     var canvas = document.getElementById('canvas');
     $(".SoB").addClass("-drawing");
