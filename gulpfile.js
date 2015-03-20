@@ -188,11 +188,22 @@ gulp.task('scripts', function (callback) {
 
 
 // -------------------------
+// --  copy over favicon  --
+// -------------------------
+gulp.task('favicon', function(callback){
+	return gulp.src(sourcePaths.BASE + 'favicon.ico')
+		.pipe(gulp.dest(destPaths.BASE));
+});
+
+
+
+// -------------------------
 // --     task: watch     --
 // -------------------------
 gulp.task('watch', function () {
 	gulp.watch(sourcePaths.SCSS, ['sass']);
 	gulp.watch(sourcePaths.BASE + '*.html', ['sass']);
+	gulp.watch(sourcePaths.BASE + '*.ico', ['favicon']);
 	gulp.watch(sourcePaths.JS, ['scripts']);
 	gulp.watch(destPaths.BASE + '*.html', ['reload']);
 });
@@ -215,6 +226,7 @@ gulp.task('watch', function () {
 gulp.task('default', function (callback) {
 	minify = true;
 	runSequence(
+		'favicon',
 		'sass',
 		'scripts',
 		callback);
@@ -226,6 +238,7 @@ gulp.task('default', function (callback) {
 gulp.task('dev', function (callback) {
 	minify = false;
 	runSequence(
+		'favicon',
 		'sass',
 		'scripts',
 		'watch',

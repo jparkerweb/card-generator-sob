@@ -103,7 +103,10 @@ function formatText(encode, someText) {
     return str;
 }
 
-function changeBackground() {
+
+function changeBackground(direction) {
+    var next = (direction !== "prev");
+
     var $cardArea = $(".card-input"),
         currentCardClass = "",
         currentCardClassNumber,
@@ -121,10 +124,24 @@ function changeBackground() {
     }
 
     currentCardClassNumber = parseInt(currentCardClass.replace(/card\-background\-/gi,""), 10);
-    if(currentCardClassNumber == cardCount) {
-        newCardClassNumber = 1;
-    } else {
-        newCardClassNumber = currentCardClassNumber + 1;
+    if(cardCount > 1) {
+        if(currentCardClassNumber == cardCount) {
+            if(next) {
+                newCardClassNumber = 1;
+            } else {
+                newCardClassNumber = cardCount - 1;
+            }
+        } else {
+            if(next) {
+                newCardClassNumber = currentCardClassNumber + 1;
+            } else {
+                if(currentCardClassNumber === 1) {
+                    newCardClassNumber = cardCount;
+                } else {
+                    newCardClassNumber = currentCardClassNumber - 1;
+                }
+            }
+        }
     }
 
     newCardClass = "card-background-" + newCardClassNumber;
@@ -132,6 +149,11 @@ function changeBackground() {
     $cardArea
         .removeClass(currentCardClass)
         .addClass(newCardClass);
+
+    var $sourceElement = $(".sourceElement");
+
+    $sourceElement.find('[data-js*="cardBackground"]').appendTo("head");
+    $sourceElement.append($('[data-js="cardBackground' + newCardClassNumber + '"]'));
 }
 
 function appendHelper($el) {
@@ -166,8 +188,11 @@ function init() {
     $("body").on("click", "#btnAddImage", function(){
         $("#file-input").click();
     });
-    $("body").on("click", "#btnBackground", function(){
-        changeBackground();
+    $("body").on("click", "#btnBackgroundPrev", function(){
+        changeBackground("prev");
+    });
+    $("body").on("click", "#btnBackgroundNext", function(){
+        changeBackground("next");
     });
     $("body").on("mouseenter mouseleave keydown", ".draggable", function(evt) {
         var $target = $(evt.target),
@@ -220,7 +245,34 @@ function init() {
         // clear input form so we can upload the same image again
         $(this).val("");
     };
+
+    generateCardAssets();
+    changeBackground();
 }
+
+function generateCardAssets() {
+    // get and write card assets
+    var c = 0;
+    for(var i = 0; i < document.styleSheets.length; i++) {
+        if(document.styleSheets[i].href !== null && document.styleSheets[i].href.indexOf("card.css") > -1) {
+            var rules = document.styleSheets[i].rules || document.styleSheets[i].cssRules;
+            for(var x in rules) {
+                if (typeof rules[x].cssText != 'undefined' && rules[x].cssText.indexOf(".card-background-") > -1) {
+                    //console.log(rules[x]);
+                    c += 1;
+                    var cssText = rules[x].cssText.replace(/(url\().*\/(ass)/gmi,"$1$2");
+                    var newStyle = $("<style type=\"text/css\" data-js=\"cardBackground" + c + "\">" + cssText + "</style>");
+                    $("head").append(newStyle);
+                    if(c === cardCount) {
+                        return false;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
 
 function getRotationDegrees(obj) {
     var matrix = obj.css("-webkit-transform") ||

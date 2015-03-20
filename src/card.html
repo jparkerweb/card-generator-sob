@@ -1,19 +1,20 @@
 <!DOCTYPE html>
     <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>SoB - Card Generator</title>
-    <meta name="description" content="Shadows of Brimstone - Character Sheet Generator">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link rel="icon" href="favicon.ico?v=1.2" type="image/x-icon"> -->
-    <link rel="stylesheet" href="css/styles.css">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>SoB - Card Generator</title>
+        <meta name="description" content="Shadows of Brimstone - Character Sheet Generator">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="favicon.ico?v=0.0.1" type="image/x-icon">
+        <link data-js="mainStyleSheet" rel="stylesheet" href="css/card.css">
     </head>
     <body>
         <div data-js="SoB" class="SoB">
             <input type="file" id="file-input" style="display:none;"/>
             <div class="button -text" id="btnAddText">add text</div>
             <div class="button -image" id="btnAddImage">add image</div>
-            <div class="button -background" id="btnBackground">background</div>
+            <div class="button -background" id="btnBackgroundNext">next background</div>
+            <div class="button -background" id="btnBackgroundPrev">prev background</div>
             <div class="button -drawit" id="btnDrawit">draw card</div>
             <div class="button -preview">Preview</div>
             <br />
@@ -24,7 +25,7 @@
                     <!-- endinject -->
                 </style>
 
-                <div class="card-input card-background-1"></div>
+                <div class="card-input card-background-0"></div>
             </div>
 
             <div class="card-output-wrapper">
