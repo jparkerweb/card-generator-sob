@@ -2,6 +2,11 @@ var theTextShadowValue = "1px 1px 12px COLOR, -1px -1px 12px COLOR, 1px -1px 12p
 var theImageShadowValue = "drop-shadow(5px 5px 5px COLOR)";
 var cardCount = parseInt($("[data-js='sassVariableCardCount']").css("font-size"), 10);
 
+var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+var is_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+
+
+
 
 function drawIt() {
     var $sourceElement = $(".sourceElement");
@@ -40,8 +45,8 @@ function initDraggable() {
 
 function addTextElement() {
     var text = document.createElement("div");
-        text.className = "text draggable -noshadow";
-        text.innerHTML = "new text";
+        text.className = "text draggable ";
+        text.innerHTML = "<span class=\"text__text\">new text</span>";
         text.contentEditable = "true";
 
     $(text)
@@ -233,6 +238,7 @@ function init() {
         }
     });
 
+    // file upload listener
     document.getElementById('file-input').onchange = function (evt) {
         window.URL = window.URL || window.webkitURL;
         var img = document.createElement("img");
@@ -246,7 +252,10 @@ function init() {
         $(this).val("");
     };
 
+
+    // setup card background assets
     generateCardAssets();
+    // set 1st card background
     changeBackground();
 }
 
@@ -293,11 +302,13 @@ function getRotationDegrees(obj) {
     return (angle < 0) ? angle + 360 : angle;
 }
 
+
 var theX = $("<div class='theHelper theX'>X</div>");
     $("body").on("click", ".theX", function(){
         var $this = $(this);
         $this.parent().detach();
     });
+
 
 var theMinus = $("<div class='theHelper theMinus'>-</div>");
     $("body").on("click", ".theMinus", function(){
@@ -305,8 +316,9 @@ var theMinus = $("<div class='theHelper theMinus'>-</div>");
         var isText = $this.parent().hasClass("text");
 
         if (isText) {
-            var fontSize = parseInt($this.parent().css("font-size"), 10);
-            $this.parent().css({"font-size": fontSize - 5});
+            var $text = $this.parent().find("span.text__text");
+            var fontSize = parseInt($text.css("font-size"), 10);
+            $text.css({"font-size": fontSize - 5});
         }
         else {
             var $img = $this.parent().find("img");
@@ -315,14 +327,16 @@ var theMinus = $("<div class='theHelper theMinus'>-</div>");
         }
     });
 
+
 var thePlus = $("<div class='theHelper thePlus'>+</div>");
     $("body").on("click", ".thePlus", function(){
         var $this = $(this);
         var isText = $this.parent().hasClass("text");
 
         if (isText) {
-            var fontSize = parseInt($this.parent().css("font-size"), 10);
-            $this.parent().css({"font-size": fontSize + 5});
+            var $text = $this.parent().find("span.text__text");
+            var fontSize = parseInt($text.css("font-size"), 10);
+            $text.css({"font-size": fontSize + 5});
         }
         else {
             var $img = $this.parent().find("img");
@@ -331,27 +345,42 @@ var thePlus = $("<div class='theHelper thePlus'>+</div>");
         }
     });
 
+
 var theRotateLeft = $("<div class='theHelper theRotateLeft'>L</div>");
     $("body").on("click", ".theRotateLeft", function(){
-        console.log("WTF");
         var $this = $(this);
+        var isText = $this.parent().hasClass("text");
+        var $theObj;
 
-        var $theObj = $this.parent();
+        if(isText) {
+            $theObj = $this.parent().find("span.text__text");
+        }
+        else {
+            $theObj = $this.parent().find("img");
+        }
+
         var currentRotate = parseInt(getRotationDegrees($theObj),10);
-        console.log("currentRotate: " + currentRotate);
         $theObj.css({"transform": "rotate(" + (currentRotate - 10).toString() + "deg)"});
     });
 
+
 var theRotateRight = $("<div class='theHelper theRotateRight'>R</div>");
     $("body").on("click", ".theRotateRight", function(){
-        console.log("WTF");
         var $this = $(this);
+        var isText = $this.parent().hasClass("text");
+        var $theObj;
 
-        var $theObj = $this.parent();
+        if(isText) {
+            $theObj = $this.parent().find("span.text__text");
+        }
+        else {
+            $theObj = $this.parent().find("img");
+        }
+
         var currentRotate = parseInt(getRotationDegrees($theObj),10);
-        console.log("currentRotate: " + currentRotate);
         $theObj.css({"transform": "rotate(" + (currentRotate + 10).toString() + "deg)"});
     });
+
 
 var theBefore = $("<div class='theHelper theBefore'>&laquo;</div>");
     $("body").on("click", ".theBefore", function(){
@@ -361,6 +390,7 @@ var theBefore = $("<div class='theHelper theBefore'>&laquo;</div>");
         $thisParent.insertBefore($before);
     });
 
+
 var theAfter = $("<div class='theHelper theAfter'>&raquo;</div>");
     $("body").on("click", ".theAfter", function(){
         var $thisParent = $(this).parent();
@@ -369,6 +399,7 @@ var theAfter = $("<div class='theHelper theAfter'>&raquo;</div>");
         $thisParent.insertAfter($after);
     });
 
+
 var theColor = $("<input type='color' name='theColor' class='theHelper theColor' />");
     $("body").on("change", ".theColor", function(){
         var colorValue = this.value;
@@ -376,6 +407,26 @@ var theColor = $("<input type='color' name='theColor' class='theHelper theColor'
 
         $thisParent.css({"color": colorValue});
     });
+
+
+var theShadow = $("<div class='theHelper theShadow'>s</div>");
+    $("body").on("click", ".theShadow", function(){
+        var $this = $(this),
+            $thisParent = $(this).parent(),
+            isText = $thisParent.hasClass("text"),
+            showShadow;
+
+        if(isText) {
+            showShadow = $thisParent.find("span.text__text").css("text-shadow") === "none";
+        }
+        else {
+            showShadow = ($thisParent.find("img").css("-webkit-filter") === "none" && $thisParent.find("img").css("filter") === "none");
+        }
+
+        $thisParent.toggleClass("-shadow", showShadow);
+        $thisParent.toggleClass("-noshadow", !showShadow);
+    });
+
 
 var theShadowColor = $("<input type='color' name='theShadowColor' class='theHelper theShadowColor' />");
     $("body").on("change", ".theShadowColor", function(){
@@ -386,7 +437,7 @@ var theShadowColor = $("<input type='color' name='theShadowColor' class='theHelp
 
         if(isText) {
             newFormattedValue = theTextShadowValue.replace(/COLOR/gm, colorValue);
-            $thisParent.css({"text-shadow": newFormattedValue});
+            $thisParent.find("span.text__text").css({"text-shadow": newFormattedValue});
         }
         else {
             newFormattedValue = theImageShadowValue.replace(/COLOR/gm, colorValue);
@@ -398,23 +449,7 @@ var theShadowColor = $("<input type='color' name='theShadowColor' class='theHelp
 
     });
 
-var theShadow = $("<div class='theHelper theShadow'>s</div>");
-    $("body").on("click", ".theShadow", function(){
-        var $this = $(this),
-            $thisParent = $(this).parent(),
-            isText = $thisParent.hasClass("text"),
-            showShadow;
 
-        if(isText) {
-            showShadow = $thisParent.css("text-shadow") === "none";
-        }
-        else {
-            showShadow = ($thisParent.find("img").css("-webkit-filter") === "none" && $thisParent.find("img").css("filter") === "none");
-        }
-
-        $thisParent.toggleClass("-shadow", showShadow);
-        $thisParent.toggleClass("-noshadow", !showShadow);
-    });
 
 $("body").on("click", function(evt){
     console.log("click target:" + evt.target.className);
@@ -423,5 +458,10 @@ $("body").on("click", function(evt){
 
 
 $( document ).ready(function() {
-    init();
+    if(typeof SVGForeignObjectElement !== 'undefined') {
+        init();
+    }
+    else {
+        $("<div class=\"browser-support\">Only Chrome & Firefox are Supported</div>").prependTo(".SoB");
+    }
 });

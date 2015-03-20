@@ -30,13 +30,17 @@
     font-size: 50px;
     color: white;
     font-family: 'dust_westregular';
+
+    span.text__text {
+        display: inline-block;
+    }
 }
 
 .text {
-    &.-noshadow {
+    &.-noshadow span.text__text{
         text-shadow: none !important;
     }
-    &.-shadow {
+    &.-shadow span.text__text{
         text-shadow: 1px 1px 12px #777, -1px -1px 12px #777, 1px -1px 12px #777, -1px 1px 12px #777;
     }
 }

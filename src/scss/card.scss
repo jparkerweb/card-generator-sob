@@ -37,7 +37,7 @@ body *::after {
 .button {
     position: relative;
     display: inline-block;
-    width: 145px;
+    min-width: 100px;
     margin: 10px 0 10px 5px;
     padding: 5px 10px;
     font-size: 22px;
@@ -231,3 +231,22 @@ body *::after {
     display: block;
     text-align: center;
 }
+
+.browser-support {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #333;
+    opacity: .9;
+    font-size: 50px;
+    color: white;
+    text-align: center;
+    padding-top: 300px;
+
+    ~ .sourceElement { display: none; }
+    ~ .button { display: none; }
+    ~ .card-output-wrapper { display: none; }
+}
++ .SoB { display: none; }
