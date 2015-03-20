@@ -61,6 +61,7 @@ body *::after {
     position: relative;
     width: 900px;
     height: 1200px;
+    margin-left: 2px;
 
     &:hover .draggable {
         outline: 1px solid #ADD8E6;

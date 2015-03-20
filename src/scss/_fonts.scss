@@ -14,7 +14,7 @@
 }
 
 $font--aquilinetwo: 'aquilinetworegular';
-
+.font--aquilinetwo { font-family: $font--aquilinetwo; }
 
 
 // =============
@@ -32,6 +32,9 @@ $font--aquilinetwo: 'aquilinetworegular';
     font-style: normal;
 }
 
+$font--berylium-regular: 'beryliumregular';
+.font--berylium-regular { font-family: $font--berylium-regular; }
+
 @font-face {
     font-family: 'beryliumitalic';
     src: url('../fonts/beryliumitalic-webfont.eot');
@@ -44,8 +47,8 @@ $font--aquilinetwo: 'aquilinetworegular';
     font-style: normal;
 }
 
-$font--berylium-regular: 'beryliumregular';
 $font--berylium-italic: 'beryliumitalic';
+.font--berylium-italic { font-family: $font--berylium-italic; }
 
 
 
@@ -65,6 +68,7 @@ $font--berylium-italic: 'beryliumitalic';
 }
 
 $font--dust-west: 'dust_westregular';
+.font--dust-west { font-family: $font--dust-west; }
 
 
 
@@ -82,3 +86,4 @@ $font--dust-west: 'dust_westregular';
 }
 
 $font--rockwell-condensed: 'Rockwell-Condensed';
+.font--rockwell-condensed { font-family: $font--rockwell-condensed; }

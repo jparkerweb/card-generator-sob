@@ -1,152 +1,65 @@
-@import "fonts";
+@import 'fonts';
+@import 'card-assets';
 
 
-body {
-    margin: 0;
-    padding: 0;
-    font-family: $font--rockwell-condensed;
-    font-size: 18px;
-    color: #222;
-    line-height: 1.38;
-}
-
-body, body *,
-body *::before,
-body *::after {
+.card-input, .card-input::before, .card-input::after,
+.card-input *, .card-input *::before, .card-input *::after {
     box-sizing: border-box;
 }
-
-.button {
-    position: fixed;
+.card-input {
     top: 0;
     right: 0;
-    width: 145px;
-    margin: 10px;
-    padding: 5px 10px;
-    font-size: 22px;
-    background: tomato;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    border-radius: 15px;
+    background-size: fit;
+}
+.draggable {
+    display: inline-block;
+    position: absolute;
+    min-width: 80px;
+    padding: 20px;
+    line-height: 1;
+}
+.text {
+    width: auto !important;
+    min-height: 30px;
+    font-size: 50px;
     color: white;
+    font-family: 'dust_westregular';
+}
+
+.text {
+    &.-noshadow {
+        text-shadow: none !important;
+    }
+    &.-shadow {
+        text-shadow: 1px 1px 12px #777, -1px -1px 12px #777, 1px -1px 12px #777, -1px 1px 12px #777;
+    }
+}
+
+.image {
+    &.-shadow img {
+        filter: drop-shadow(5px 5px 5px #777);
+        -webkit-filter: drop-shadow(5px 5px 5px #777);
+    }
+    &.-noshadow img {
+        filter: none !important;
+        -webkit-filter: none !important;
+    }
+}
+
+.-bold {
     font-weight: 600;
-    text-align: center;
-    cursor: pointer;
-    border-radius: 3px;
-    user-select: none;
-    -webkit-user-select: none;
-
-    &.-text {
-        top: 50px;
-    }
-
-    &.-image {
-        top: 100px;
-    }
-
-    &.-background {
-        top: 150px;
-    }
 }
 
-.sourceElement {
-    display: inline-block;
-    position: relative;
-    width: 900px;
-    height: 1200px;
-
-    &:hover .draggable {
-        outline: 1px solid #ADD8E6;
-    }
-
-    .draggable:hover {
-        outline: 1px solid red !important;
-        cursor: move;
-    }
-
-    .theHelper {
-        background: maroon;
-        border-radius: 50%;
-        font-size: 16px;
-        font-weight: 600;
-        cursor: pointer;
-        color: white;
-        padding: 2px 4px;
-        vertical-align: top;
-        position: absolute;
-        width: 22px;
-        height: 22px;
-        text-align: center;
-        line-height: 1.2;
-        cursor: pointer;
-        border: 1px solid #222;
-        text-shadow: none;
-
-        &.theX {
-            top: 5px;
-            left: 5px;
-        }
-
-        &.theMinus {
-            top: 5px;
-            left: 30px;
-            line-height: 1;
-        }
-
-        &.thePlus {
-            top: 5px;
-            left: 55px;
-        }
-
-        &.theBefore {
-            bottom: 5px;
-            left: 5px;
-            line-height: 1;
-            background: teal;
-        }
-
-        &.theAfter {
-            bottom: 5px;
-            left: 30px;
-            line-height: 1;
-            background: teal;
-        }
-
-        &.theShadow {
-            bottom: 5px;
-            left: 55px;
-            line-height: 1;
-            background: teal;
-        }
-
-        &.theShadowColor {
-            bottom: 5px;
-            left: 80px;
-            line-height: 1;
-            background: teal;
-        }
-
-        &.theColor {
-            bottom: 5px;
-            left: 105px;
-            line-height: 1;
-            background: teal;
-            padding: 0;
-            border-radius: 3px;
-            margin: 0;
-            border: 0;
-        }
-    }
-
-    .image .theColor {
-        display: none;
-    }
+.-italic {
+    font-style: italic;
 }
 
-
-.card-output {
-    display: inline-block;
-    vertical-align: top;
-}
-
-#canvas {
-    border: 3px solid tomato;
-    width: 400px;
+.-underline {
+    text-decoration: underline;
 }

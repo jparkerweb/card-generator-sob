@@ -1,35 +1,7 @@
 var theTextShadowValue = "1px 1px 12px COLOR, -1px -1px 12px COLOR, 1px -1px 12px COLOR, -1px 1px 12px COLOR";
 var theImageShadowValue = "drop-shadow(5px 5px 5px COLOR)";
+var cardCount = parseInt($("[data-js='sassVariableCardCount']").css("font-size"), 10);
 
-var theBackgroundFormat = "url('/assets/CARDIMAGE')";
-var backgrounds = [
-    "card-gear.jpg",
-    "card-injury.jpg",
-    "card-madness.jpg",
-    "card-mutation.jpg",
-    "card-threat-epic.jpg",
-    "card-threat-high.jpg",
-    "card-threat-jargo.jpg",
-    "card-threat-low.jpg",
-    "card-threat-med.jpg",
-    "card-threat-targa.jpg",
-    "card-townItem.jpg",
-    "card-wanted.jpg",
-    "cardback-townitemBlank.jpg",
-    "cardback-injury.jpg",
-    "cardback-madness.jpg",
-    "cardback-mutation.jpg",
-    "cardback-Bandido.png",
-    "cardback-Gambler.png",
-    "cardback-Gunslinger.png",
-    "cardback-IndianScout.png",
-    "cardback-Lawman.png",
-    "cardback-Outlaw.png",
-    "cardback-Preacher.png",
-    "cardback-Rancher.png",
-    "cardback-SaloonGirl.png",
-    "cardback-USMarshal.png"
-];
 
 function drawIt() {
     var $sourceElement = $(".sourceElement");
@@ -133,28 +105,33 @@ function formatText(encode, someText) {
 
 function changeBackground() {
     var $cardArea = $(".card-input"),
-        currentCard;
+        currentCardClass = "",
+        currentCardClassNumber,
+        newCardClassNumber,
+        newCardClass;
 
-    //var theBackgroundFormat = "background-image: url('assets/CARDIMAGE')";
-    //background-image: url('assets/card-gear.jpg');
-    currentCard = $cardArea.css("background-image");
-
-    var re, subst, str;
-    re = /.*assets\/([0-9a-z.-]*)'{0,1}\).*/gmi;
-    subst = '$1';
-    currentCard = currentCard.replace(re, subst);
-
-    var currentCardIndex = $.inArray( currentCard, backgrounds );
-    var newBackgroundFormatted;
-
-    if(currentCardIndex < 0) {
-        newBackgroundFormatted = theBackgroundFormat.replace(/CARDIMAGE/, backgrounds[0]);
+    var classList = $cardArea[0].className.split(/\s+/);
+    for (var i = 0; i < classList.length; i++) {
+        if (classList[i].indexOf("card-background-") > -1) {
+            currentCardClass = classList[i];
+        }
     }
-    else {
-        newBackgroundFormatted = theBackgroundFormat.replace(/CARDIMAGE/, "cardback-USMarshal.png");
+    if(currentCardClass === "") {
+        currentCardClass = "card-background-1";
     }
 
-    $cardArea.css({"background-image": newBackgroundFormatted});
+    currentCardClassNumber = parseInt(currentCardClass.replace(/card\-background\-/gi,""), 10);
+    if(currentCardClassNumber == cardCount) {
+        newCardClassNumber = 1;
+    } else {
+        newCardClassNumber = currentCardClassNumber + 1;
+    }
+
+    newCardClass = "card-background-" + newCardClassNumber;
+
+    $cardArea
+        .removeClass(currentCardClass)
+        .addClass(newCardClass);
 }
 
 function appendHelper($el) {

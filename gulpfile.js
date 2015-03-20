@@ -13,6 +13,8 @@
 		csso = require('gulp-csso'),
 		concat = require('gulp-concat'),
 		uglify = require('gulp-uglify'),
+		inject = require('gulp-inject'),
+		replace = require('gulp-replace'),
 		header = require('gulp-header');
 // ==========================================
 
@@ -22,9 +24,11 @@
 // ===         setup Path variables       ===
 // ==========================================
 	var sourcePaths = {
-		SCSS: 'src/scss/**/*.scss',
-		JS: 'src/js/**/*.js',
-		JSBase: 'src/js/'
+		BASE: './src/',
+		SCSS: './src/scss/**/*.scss',
+		SCSSBase: './src/scss/',
+		JS: './src/js/**/*.js',
+		JSBase: './src/js/'
 	};
 	var destPaths = {
 		BASE: './dist/',
@@ -80,6 +84,7 @@ gulp.task('sass', function (callback) {
 	runSequence(
 		'clean-sass',
 		'build-sass',
+		'card-html',
 		callback);
 });
 	// clean our build path
@@ -106,6 +111,47 @@ gulp.task('sass', function (callback) {
 			.pipe(gulp.dest(destPaths.CSS))
 			.pipe(browserSync.reload({stream: true}));
 	});
+
+
+
+	// -------------------------
+	// --    task: HTML       --
+	// -------------------------
+	gulp.task('card-html', function (callback) {
+		runSequence(
+			'clean-card-html',
+			'build-card-html',
+			'clean-card-css',
+			callback);
+	});
+		// clean our build path
+		gulp.task('clean-card-html', function () {
+			return gulp.src([
+					destPaths.BASE + 'card.html'
+				], {read: false})
+				.pipe(clean());
+		});
+		// task: compile SASS to CSS and AutoPrefix
+		gulp.task('build-card-html', function () {
+			return gulp.src(sourcePaths.BASE + 'card.html')
+				.pipe(inject(gulp.src([destPaths.CSS + 'inject-card.css']), {
+					starttag: '<!-- inject:customcss -->',
+					transform: function (filePath, file) {
+						// return file contents as string
+						return file.contents.toString('utf8');
+					}
+				}))
+				.pipe(replace(/\.\.\/fonts\//gmi,"fonts/"))
+				.pipe(gulp.dest(destPaths.BASE))
+				.pipe(browserSync.reload({stream: true}));
+		});
+		// clean our temp css
+		gulp.task('clean-card-css', function () {
+			return gulp.src([
+					destPaths.CSS + 'inject-card.css'
+				], {read: false})
+				.pipe(clean());
+		});
 
 
 
@@ -146,6 +192,7 @@ gulp.task('scripts', function (callback) {
 // -------------------------
 gulp.task('watch', function () {
 	gulp.watch(sourcePaths.SCSS, ['sass']);
+	gulp.watch(sourcePaths.BASE + '*.html', ['sass']);
 	gulp.watch(sourcePaths.JS, ['scripts']);
 	gulp.watch(destPaths.BASE + '*.html', ['reload']);
 });
