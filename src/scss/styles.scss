@@ -2,6 +2,21 @@
 @import "fonts";
 
 
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    0%  {-webkit-transform: rotate(0deg);}
+    100% {-webkit-transform: rotate(360deg);}
+}
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
+
+
+
 body {
     margin: 0;
     padding: 0;
@@ -9,6 +24,7 @@ body {
     font-size: 18px;
     color: #222;
     line-height: 1.38;
+    background: #DFDDCE;
 }
 
 body, body *,
@@ -162,6 +178,25 @@ body *::after {
 }
 
 
+.card-output-wrapper {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+
+    .pdie-loading {
+        display: none;
+    }
+    @include context('.card-output-wrapper', '.SoB.-drawing .card-output-wrapper') {
+        .pdie-loading {
+            position: absolute;
+            top: 310px;
+            left: 123px;
+            display: inline-block;
+            z-index: 10;
+            animation: spin 5s infinite linear;
+        }
+    }
+}
 .card-output {
     display: inline-block;
     vertical-align: top;
@@ -176,9 +211,8 @@ body *::after {
             right: 0;
             bottom: 0;
             left: 0;
-            opacity: .8;
             padding: 220px 0;
-            background: red;
+            background: maroon;
             border-radius: 5px;
             font-size: 60px;
             color: white;

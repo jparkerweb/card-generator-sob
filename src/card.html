@@ -11,10 +11,10 @@
     <body>
         <div data-js="SoB" class="SoB">
             <input type="file" id="file-input" style="display:none;"/>
-            <div class="button -drawit" id="btnDrawit">draw it</div>
             <div class="button -text" id="btnAddText">add text</div>
             <div class="button -image" id="btnAddImage">add image</div>
             <div class="button -background" id="btnBackground">background</div>
+            <div class="button -drawit" id="btnDrawit">draw card</div>
             <div class="button -preview">Preview</div>
             <br />
 
@@ -27,7 +27,10 @@
                 <div class="card-input card-background-1"></div>
             </div>
 
-            <div class="card-output"></div>
+            <div class="card-output-wrapper">
+                <img src="assets/dice-peril.png" class="pdie-loading">
+                <div class="card-output"></div>
+            </div>
         </div>
 
         <!-- hidden sass variables //-->
