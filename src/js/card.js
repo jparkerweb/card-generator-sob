@@ -428,7 +428,7 @@ var theText = $("<div class='theHelper theText'>T</div>");
     $("body").on("click", ".theText", function(){
         var $thisParent = $(this).parent();
         var $text = $thisParent.find("span.text__text");
-        var textValue = formatText(false, $text.text());
+        var textValue = formatText(false, $text.html());
         var $textarea = $("#editText");
 
         $hiddenTextSource = $text;
