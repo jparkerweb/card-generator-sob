@@ -28,14 +28,33 @@
                 <div class="card-input card-background-0"></div>
             </div>
 
-            <div class="card-output-wrapper">
+            <div class="card-output-wrapper font--bleeding-cowboys">
                 <img src="assets/dice-peril.png" class="pdie-loading">
                 <div class="card-output"></div>
             </div>
         </div>
 
-        <!-- hidden sass variables //-->
+        <div class="edit-text-canvas">
+            <div class="vcontainer">
+                <div class="content">
+                    <input type="hidden" value="" id="hiddenTextSource" />
+                    <textarea class="edit-text" id="editText"></textarea>
+                    <div class="tips">
+                        <div class="tip">**bold**</div>
+                        <div class="tip">++italic++</div>
+                        <div class="tip">__underline__</div>
+                    </div>
+                    <div class="button-bar">
+                        <button type="button" class="button -save" data-js="buttonSave">Save</button>
+                        <button type="button" class="button -cancel" data-js="buttonCancel">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- hidden sass variables -->
         <div data-js='sassVariableCardCount' class="sass-variable--card-count"></div>
+        <div data-js='sassVariableFontCount' class="sass-variable--font-count"></div>
 
         <script src="js/card.min.js"></script>
     </body>

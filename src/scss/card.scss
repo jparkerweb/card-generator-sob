@@ -133,6 +133,17 @@ body *::after {
             left: 105px;
         }
 
+        &.theWidthSmaller {
+            top: 5px;
+            left: 130px;
+        }
+
+        &.theWidthLarger {
+            top: 5px;
+            left: 155px;
+        }
+
+
         &.theBefore {
             bottom: 5px;
             left: 5px;
@@ -147,23 +158,37 @@ body *::after {
             background: teal;
         }
 
-        &.theShadow {
+        &.theText {
             bottom: 5px;
             left: 55px;
             line-height: 1;
             background: teal;
         }
 
-        &.theShadowColor {
+        &.theFont {
             bottom: 5px;
             left: 80px;
             line-height: 1;
             background: teal;
         }
 
-        &.theColor {
+        &.theShadow {
             bottom: 5px;
             left: 105px;
+            line-height: 1;
+            background: teal;
+        }
+
+        &.theShadowColor {
+            bottom: 5px;
+            left: 130px;
+            line-height: 1;
+            background: teal;
+        }
+
+        &.theColor {
+            bottom: 5px;
+            left: 155px;
             line-height: 1;
             background: teal;
             padding: 0;
@@ -173,8 +198,22 @@ body *::after {
         }
     }
 
-    .image .theColor {
-        display: none;
+    .image {
+        .theColor,
+        .theWidthSmaller,
+        .theWidthLarger,
+        .theText,
+        .theFont {
+            display: none;
+        }
+
+        .theShadow {
+            left: 55px;
+        }
+
+        .theShadowColor {
+            left: 80px;
+        }
     }
 }
 
@@ -222,6 +261,77 @@ body *::after {
     }
 }
 
+.SoB {
+    text-align: center;
+
+    body.-edit-text & {
+        opacity: .2;
+    }
+}
+.edit-text-canvas {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    body.-edit-text & {
+        display: block;
+    }
+}
+
+.vcontainer{
+    position:absolute;
+    transform: translate(-50%,-70%);
+    left: 50%;
+    top: 70%;
+
+    .content {
+        transition: all 300ms ease-in-out;
+        display: inline-block;
+        padding: 15px 20px;
+        font-family: arial, sans-serif;
+        text-align: center;
+        background: maroon;;
+        color: white;
+        border-radius: 7px;
+        box-shadow: 0 3px #777;
+        margin-top: -200vh;
+
+        body.-edit-text & {
+            margin-top: 0;
+        }
+
+        .edit-text {
+            width: 500px;
+            height: 200px;
+            font-size: 22px;
+        }
+
+        .tips {
+
+            .tip {
+                display: inline-block;
+                font-size: 20px;
+                padding: 15px 15px 10px 15px;
+                color: #CFB6B6;
+            }
+        }
+
+        .button.-save {
+            font-family: $font--berylium-regular;
+            background: #27ae60;
+        }
+        .button.-cancel {
+            font-family: $font--berylium-regular;
+            background: #7f8c8d;
+        }
+    }
+}
+
+
+
 
 #canvas {
     width: 400px;
@@ -230,6 +340,8 @@ body *::after {
 .save-card {
     display: block;
     text-align: center;
+    font-family: $font--berylium-italic;
+    font-weight: 600;
 }
 
 .browser-support {

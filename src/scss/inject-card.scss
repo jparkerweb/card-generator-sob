@@ -1,5 +1,4 @@
 @import 'fonts';
-//@import 'card-assets';
 
 
 .card-input, .card-input::before, .card-input::after,
@@ -23,13 +22,20 @@
     min-width: 80px;
     padding: 20px;
     line-height: 1;
+    top: 20px;
+    left: 20px;
 }
 .text {
-    width: auto !important;
+    width: auto;
+    min-width: 180px;
+    max-width: 630px;
     min-height: 30px;
     font-size: 50px;
-    color: white;
-    font-family: 'dust_westregular';
+    color: #000;
+    top: 303px;
+    left: 236px;
+    text-align: center;
+    word-break: break-word;
 
     span.text__text {
         display: inline-block;

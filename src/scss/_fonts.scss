@@ -1,3 +1,25 @@
+$font-list:
+    'dust_westregular',
+    'aquilinetworegular',
+    'beryliumregular',
+    'beryliumitalic',
+    'Rockwell-Condensed',
+    'bleeding_cowboysregular'
+    ;
+
+.sass-variable--font-count {
+    display: none;
+    font-size: #{length($font-list)}px !important;
+}
+
+@each $current-font in $font-list {
+    $i: index($font-list, $current-font);
+    .custom-font-#{$i} {
+        font-family: $current-font !important;
+    }
+}
+
+
 // =================
 // == aquilinetwo ==
 // =================
@@ -87,3 +109,22 @@ $font--dust-west: 'dust_westregular';
 
 $font--rockwell-condensed: 'Rockwell-Condensed';
 .font--rockwell-condensed { font-family: $font--rockwell-condensed; }
+
+
+
+// =============================
+// == bleeding_cowboysregular ==
+// =============================
+@font-face {
+    font-family: 'bleeding_cowboysregular';
+    src: url('../fonts/Bleeding Cowboys-webfont.eot');
+    src: url('../fonts/Bleeding Cowboys-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Bleeding Cowboys-webfont.woff2') format('woff2'),
+         url('../fonts/Bleeding Cowboys-webfont.woff') format('woff'),
+         url('../fonts/Bleeding Cowboys-webfont.ttf') format('truetype'),
+         url('../fonts/Bleeding Cowboys-webfont.svg#bleeding_cowboysregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+$font--bleeding-cowboys: 'bleeding_cowboysregular';
+.font--bleeding-cowboys { font-family: $font--bleeding-cowboys; }

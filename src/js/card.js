@@ -1,6 +1,7 @@
 var theTextShadowValue = "1px 1px 12px COLOR, -1px -1px 12px COLOR, 1px -1px 12px COLOR, -1px 1px 12px COLOR";
 var theImageShadowValue = "drop-shadow(5px 5px 5px COLOR)";
 var cardCount = parseInt($("[data-js='sassVariableCardCount']").css("font-size"), 10);
+var fontCount = parseInt($("[data-js='sassVariableFontCount']").css("font-size"), 10);
 
 var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
 var is_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
@@ -46,8 +47,7 @@ function initDraggable() {
 function addTextElement() {
     var text = document.createElement("div");
         text.className = "text draggable ";
-        text.innerHTML = "<span class=\"text__text\">new text</span>";
-        text.contentEditable = "true";
+        text.innerHTML = "<span class=\"text__text custom-font-1\">plain <span class=\"-bold\">bold</span> <span class=\"-italic\">italic</span> <span class=\"-underline\">underline</span></span>";
 
     $(text)
         .appendTo(".card-input")
@@ -168,11 +168,15 @@ function appendHelper($el) {
         .append(thePlus)
         .append(theRotateLeft)
         .append(theRotateRight)
+        .append(theWidthSmaller)
+        .append(theWidthLarger)
+        .append(theBefore)
+        .append(theAfter)
+        .append(theText)
+        .append(theFont)
         .append(theShadow)
         .append(theShadowColor)
-        .append(theColor)
-        .append(theBefore)
-        .append(theAfter);
+        .append(theColor);
 }
 
 function detachHelper() {
@@ -210,15 +214,6 @@ function init() {
             if( $(evt.currentTarget).find("theX").length === 0 ) {
                 appendHelper($(evt.currentTarget));
             }
-
-            if(targetType === "text") {
-                $target.attr({"contenteditable": "true"});
-            }
-
-            $target = $(evt.target);
-            if($target.hasClass("text")) {
-                $target.html(formatText(false, $target.html()));
-            }
         }
 
         if(evt.type === "keydown") {
@@ -227,14 +222,6 @@ function init() {
 
         if(evt.type === "mouseleave") {
             detachHelper();
-
-            if(targetType === "text") {
-                $target.attr({"contenteditable": "false"});
-            }
-
-            if($target.hasClass("text")) {
-                $target.html(formatText(true, $target.html()));
-            }
         }
     });
 
@@ -382,6 +369,42 @@ var theRotateRight = $("<div class='theHelper theRotateRight'>R</div>");
     });
 
 
+var theWidthSmaller = $("<div class='theHelper theWidthSmaller'>W-</div>");
+    $("body").on("click", ".theWidthSmaller", function(){
+        var $this = $(this);
+        var isText = $this.parent().hasClass("text");
+        var $theObj;
+
+        if(isText) {
+            $theObj = $this.parent().find("span.text__text");
+        }
+        else {
+            $theObj = $this.parent().find("img");
+        }
+
+        var currentWidth = parseInt($theObj.width(), 10);
+        $theObj.css({"width": (currentWidth - 10).toString() + "px"});
+    });
+
+
+var theWidthLarger = $("<div class='theHelper theWidthLarger'>W+</div>");
+    $("body").on("click", ".theWidthLarger", function(){
+        var $this = $(this);
+        var isText = $this.parent().hasClass("text");
+        var $theObj;
+
+        if(isText) {
+            $theObj = $this.parent().find("span.text__text");
+        }
+        else {
+            $theObj = $this.parent().find("img");
+        }
+
+        var currentWidth = parseInt($theObj.width(), 10);
+        $theObj.css({"width": (currentWidth + 10).toString() + "px"});
+    });
+
+
 var theBefore = $("<div class='theHelper theBefore'>&laquo;</div>");
     $("body").on("click", ".theBefore", function(){
         var $thisParent = $(this).parent();
@@ -397,6 +420,63 @@ var theAfter = $("<div class='theHelper theAfter'>&raquo;</div>");
         var $after = $thisParent.next();
 
         $thisParent.insertAfter($after);
+    });
+
+
+var $hiddenTextSource;
+var theText = $("<div class='theHelper theText'>T</div>");
+    $("body").on("click", ".theText", function(){
+        var $thisParent = $(this).parent();
+        var $text = $thisParent.find("span.text__text");
+        var textValue = formatText(false, $text.text());
+        var $textarea = $("#editText");
+
+        $hiddenTextSource = $text;
+
+        $("body").addClass("-edit-text");
+        $textarea.val(textValue).focus();
+    });
+
+    $("body").on("click", '[data-js="buttonSave"]', function(){
+        var $textarea = $("#editText");
+        var newTextValue = formatText(true, $textarea.val());
+        $hiddenTextSource.html(newTextValue);
+
+        $textarea.val("");
+        $("body").removeClass("-edit-text");
+    });
+
+    $("body").on("click", '[data-js="buttonCancel"]', function(){
+        var $textarea = $("#editText");
+
+        $textarea.val("");
+        $("body").removeClass("-edit-text");
+    });
+
+
+var theFont = $("<div class='theHelper theFont'>F</div>");
+    $("body").on("click", ".theFont", function(){
+        var $thisText = $(this).parent().find("span.text__text");
+        var currentFontNumber;
+
+        var classList = $thisText[0].className.split(/\s+/);
+        for (var i = 0; i < classList.length; i++) {
+            if (classList[i].indexOf('custom-font-') > -1) {
+                 currentFontNumber = parseInt(classList[i].replace(/custom\-font\-/g,''), 10);
+                 break;
+            }
+        }
+
+        var newFontNumber;
+        if(currentFontNumber === fontCount) {
+            newFontNumber = 1;
+        }
+        else {
+            newFontNumber = currentFontNumber + 1;
+        }
+
+        $thisText.removeClass("custom-font-" + currentFontNumber);
+        $thisText.addClass("custom-font-" + newFontNumber);
     });
 
 
