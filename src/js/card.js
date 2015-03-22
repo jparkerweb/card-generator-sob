@@ -27,15 +27,17 @@ function drawIt() {
         .append(saveCardText);
 
     var canvas = document.getElementById('canvas');
+    $("body").addClass("-drawing-card");
     $(".SoB").addClass("-drawing");
+
     rasterizeHTML.drawHTML($sourceHTML, canvas)
         .then(function success(renderResult) {
             $(".SoB").removeClass("-drawing");
         }, function error(e) {
-            console.log("error");
+            console.log("error drawing card");
+            $("body").removeClass("-drawing-card");
             $(".SoB").removeClass("-drawing");
         });
-    console.log("after");
 }
 
 function initDraggable() {
@@ -47,7 +49,7 @@ function initDraggable() {
 function addTextElement() {
     var text = document.createElement("div");
         text.className = "text draggable ";
-        text.innerHTML = "<span class=\"text__text custom-font-1\">plain <span class=\"-bold\">bold</span> <span class=\"-italic\">italic</span> <span class=\"-underline\">underline</span></span>";
+        text.innerHTML = "<span class=\"text__text custom-font-1\">plain <span class=\"-bold\">bold</span> <span class=\"-italic\">italic</span> <span class=\"-underline\">underline</span> <span class=\"-smallcaps\">SmallCaps</span></span>";
 
     $(text)
         .appendTo(".card-input")
@@ -101,6 +103,21 @@ function formatText(encode, someText) {
     else {
         re = /<span class="-underline">([^<]*)<\/span>/gm;
         subst = '__$1__';
+
+        str = str.replace(re, subst);
+    }
+    // ---------------------
+    // -- Small Caps Text --
+    // ---------------------
+    if(encode) {
+        re = /\!\!([^\!{2}]*)\!\!/gm;
+        subst = '<span class="-smallcaps">$1</span>';
+
+        str = str.replace(re, subst);
+    }
+    else {
+        re = /<span class="-smallcaps">([^<]*)<\/span>/gm;
+        subst = '!!$1!!';
 
         str = str.replace(re, subst);
     }
@@ -288,6 +305,11 @@ function getRotationDegrees(obj) {
     }
     return (angle < 0) ? angle + 360 : angle;
 }
+
+
+$("body").on("click", '[data-js="buttonClose"]', function(){
+    $("body").removeClass("-drawing-card");
+});
 
 
 var theX = $("<div class='theHelper theX'>X</div>");

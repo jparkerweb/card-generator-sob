@@ -34,6 +34,10 @@ body *::after {
     box-sizing: border-box;
 }
 
+button {
+  box-shadow: none;
+  border: none;
+}
 .button {
     position: relative;
     display: inline-block;
@@ -41,15 +45,21 @@ body *::after {
     margin: 10px 0 10px 5px;
     padding: 5px 10px;
     font-size: 22px;
-    background: tomato;
+    background: #BD3A23;
     color: white;
     text-shadow: 1px 1px 1px #333;
     font-weight: 600;
+    font-family: $font--berylium-regular;
+    font-variant: small-caps;
     text-align: center;
     cursor: pointer;
     border-radius: 3px;
     user-select: none;
     text-transform: capitalize;
+
+    &:hover {
+        background: maroon;
+    }
 
     &:first-of-type {
         margin-left: 10px;
@@ -59,15 +69,12 @@ body *::after {
         cursor: zoom-out;
         transition: all 300ms;
         opacity: 1;
-        @include context('.button', '.SoB.-drawing .button') {
-            opacity: 0;
-            cursor: default;
-        }
-        @include context('.button', '.SoB:not(.-drawing) .button') {
-            &:hover ~ .sourceElement {
+
+        &:hover{
+            ~ .sourceElement {
                 transform: scale(0.444, 0.444);
                 top: -334px;
-                left: -230px;
+                left: 0px;
             }
         }
     }
@@ -223,10 +230,35 @@ body *::after {
     position: relative;
     vertical-align: top;
 
+    .card-output-wrapper__close {
+        display: inline-block;
+        position: absolute;
+        top: -50px;
+        right: -50px;
+        font-family: "beryliumregular";
+        background: #747474;
+        color: white;
+        cursor: pointer;
+        border-radius: 50%;
+        z-index: 10;
+        width: 60px;
+        height: 60px;
+        padding-top: 2px;
+        font-size: 50px;
+        font-weight: 600;
+        border: 3px solid black;
+        line-height: 1.1;
+
+        &:hover {
+            background: #222;
+            color: white;
+        }
+    }
+
     .pdie-loading {
         display: none;
     }
-    @include context('.card-output-wrapper', '.SoB.-drawing .card-output-wrapper') {
+    @include context('.card-output-wrapper', '.SoB.-drawing ~ .body-canvas.-drawing-card .card-output-wrapper') {
         .pdie-loading {
             position: absolute;
             top: 310px;
@@ -242,7 +274,7 @@ body *::after {
     vertical-align: top;
     position: relative;
 
-    @include context('.card-output', '.SoB.-drawing .card-output') {
+    @include context('.card-output', '.SoB.-drawing ~ .body-canvas.-drawing-card .card-output') {
         &:after {
             content: 'drawing card...';
             position: absolute;
@@ -264,11 +296,24 @@ body *::after {
 .SoB {
     text-align: center;
 
-    body.-edit-text & {
+    body.-edit-text &,
+    body.-drawing-card & {
         opacity: .2;
     }
 }
-.edit-text-canvas {
+.body-canvas.-drawing-card {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    body.-drawing-card & {
+        display: block;
+    }
+}
+.body-canvas.-edit-text {
     display: none;
     position: absolute;
     top: 0;
@@ -283,9 +328,9 @@ body *::after {
 
 .vcontainer{
     position:absolute;
-    transform: translate(-50%,-70%);
+    transform: translate(-50%,-60%);
     left: 50%;
-    top: 70%;
+    top: 60%;
 
     .content {
         transition: all 300ms ease-in-out;
@@ -297,7 +342,6 @@ body *::after {
         color: white;
         border-radius: 7px;
         box-shadow: 0 3px #777;
-        margin-top: -200vh;
 
         body.-edit-text & {
             margin-top: 0;
@@ -307,6 +351,7 @@ body *::after {
             width: 500px;
             height: 200px;
             font-size: 22px;
+            background: #E4E0CD;
         }
 
         .tips {
@@ -314,18 +359,24 @@ body *::after {
             .tip {
                 display: inline-block;
                 font-size: 20px;
-                padding: 15px 15px 10px 15px;
+                padding: 15px 10px 10px 10px;
                 color: #CFB6B6;
             }
         }
 
         .button.-save {
-            font-family: $font--berylium-regular;
             background: #27ae60;
+
+            &:hover {
+                background: #217343;
+            }
         }
         .button.-cancel {
-            font-family: $font--berylium-regular;
             background: #7f8c8d;
+
+            &:hover {
+                background: #595959;
+            }
         }
     }
 }

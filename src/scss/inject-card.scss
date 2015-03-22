@@ -30,10 +30,10 @@
     min-width: 180px;
     max-width: 630px;
     min-height: 30px;
-    font-size: 50px;
+    font-size: 35px;
     color: #000;
-    top: 303px;
-    left: 236px;
+    top: 443px;
+    left: 230px;
     text-align: center;
     word-break: break-word;
 
@@ -48,6 +48,10 @@
     }
     &.-shadow span.text__text{
         text-shadow: 1px 1px 12px #777, -1px -1px 12px #777, 1px -1px 12px #777, -1px 1px 12px #777;
+    }
+
+    span.text__text {
+        width: 412px;
     }
 }
 
@@ -72,4 +76,8 @@
 
 .-underline {
     text-decoration: underline;
+}
+
+.-smallcaps {
+    font-variant: small-caps;
 }

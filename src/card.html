@@ -27,14 +27,23 @@
 
                 <div class="card-input card-background-0"></div>
             </div>
+        </div>
 
-            <div class="card-output-wrapper font--bleeding-cowboys">
-                <img src="assets/dice-peril.png" class="pdie-loading">
-                <div class="card-output"></div>
+        <!-- card drawing area -->
+        <div class="body-canvas -drawing-card">
+            <div class="vcontainer">
+                <div class="content">
+                    <div class="card-output-wrapper font--bleeding-cowboys">
+                        <div class="card-output-wrapper__close" data-js="buttonClose">X</div>
+                        <img src="assets/dice-peril.png" class="pdie-loading">
+                        <div class="card-output"></div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="edit-text-canvas">
+        <!-- edit text area -->
+        <div class="body-canvas -edit-text">
             <div class="vcontainer">
                 <div class="content">
                     <input type="hidden" value="" id="hiddenTextSource" />
@@ -43,6 +52,7 @@
                         <div class="tip">**bold**</div>
                         <div class="tip">++italic++</div>
                         <div class="tip">__underline__</div>
+                        <div class="tip">!!smallcaps!!</div>
                     </div>
                     <div class="button-bar">
                         <button type="button" class="button -save" data-js="buttonSave">Save</button>
