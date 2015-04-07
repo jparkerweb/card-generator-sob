@@ -7,7 +7,7 @@
   "author": "Justin Parker",
   "license": "MIT",
   "devDependencies": {
-    "browser-sync": "^1.8.2",
+    "browser-sync": "^2.5.3",
     "gulp": "^3.8.9",
     "gulp-autoprefixer": "^2.0.0",
     "gulp-clean": "^0.3.1",

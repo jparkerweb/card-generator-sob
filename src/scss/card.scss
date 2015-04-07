@@ -1,4 +1,5 @@
 @import "mixins";
+@import "sobicons";
 @import "fonts";
 @import "card-assets";
 
@@ -96,107 +97,79 @@ button {
         cursor: move;
     }
 
+    .toolbar {
+        display: block;
+        position: absolute;
+        color: white;
+        border-bottom: 1px solid #DDD;
+
+        &.-top {
+            top: 0;
+        }
+        &.-bottom {
+            bottom: 0;
+        }
+    }
+
     .theHelper {
         background: maroon;
-        border-radius: 50%;
-        font-size: 16px;
-        font-weight: 600;
+        border-radius: 20px;
+        font-size: 22px;
+        font-weight: 400;
         cursor: pointer;
         color: white;
         padding: 2px 4px;
         vertical-align: top;
-        position: absolute;
-        width: 22px;
-        height: 22px;
+        position: relative;
+        width: 34px;
+        height: 34px;
         text-align: center;
         line-height: 1.2;
         cursor: pointer;
         border: 1px solid #222;
         text-shadow: none;
+        display: inline-block;
 
-        &.theX {
-            top: 5px;
-            left: 5px;
-        }
+        &.theX {}
 
-        &.theMinus {
-            top: 5px;
-            left: 30px;
-            line-height: 1;
-        }
+        &.theMinus {}
 
-        &.thePlus {
-            top: 5px;
-            left: 55px;
-        }
+        &.thePlus {}
 
-        &.theRotateLeft {
-            top: 5px;
-            left: 80px;
-        }
+        &.theRotateLeft {}
 
-        &.theRotateRight {
-            top: 5px;
-            left: 105px;
-        }
+        &.theRotateRight {}
 
-        &.theWidthSmaller {
-            top: 5px;
-            left: 130px;
-        }
+        &.theWidthSmaller {}
 
-        &.theWidthLarger {
-            top: 5px;
-            left: 155px;
-        }
+        &.theWidthLarger {}
 
 
         &.theBefore {
-            bottom: 5px;
-            left: 5px;
-            line-height: 1;
             background: teal;
         }
 
         &.theAfter {
-            bottom: 5px;
-            left: 30px;
-            line-height: 1;
             background: teal;
         }
 
         &.theText {
-            bottom: 5px;
-            left: 55px;
-            line-height: 1;
             background: teal;
         }
 
         &.theFont {
-            bottom: 5px;
-            left: 80px;
-            line-height: 1;
             background: teal;
         }
 
         &.theShadow {
-            bottom: 5px;
-            left: 105px;
-            line-height: 1;
             background: teal;
         }
 
         &.theShadowColor {
-            bottom: 5px;
-            left: 130px;
-            line-height: 1;
             background: teal;
         }
 
         &.theColor {
-            bottom: 5px;
-            left: 155px;
-            line-height: 1;
             background: teal;
             padding: 0;
             border-radius: 3px;

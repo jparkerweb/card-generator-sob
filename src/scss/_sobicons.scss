@@ -1,0 +1,92 @@
+@font-face {
+	font-family: 'sobicon';
+	src:url('../fonts/sobicon.eot?-3ckur4');
+	src:url('../fonts/sobicon.eot?#iefix-3ckur4') format('embedded-opentype'),
+		url('../fonts/sobicon.woff?-3ckur4') format('woff'),
+		url('../fonts/sobicon.ttf?-3ckur4') format('truetype'),
+		url('../fonts/sobicon.svg?-3ckur4#sobicon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="sobicon-"], [class*=" sobicon-"] {
+	font-family: 'sobicon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.sobicon-ok:before {
+	content: "\e600";
+}
+
+.sobicon-close:before {
+	content: "\e601";
+}
+
+.sobicon-close2:before {
+	content: "\e602";
+}
+
+.sobicon-zoom-out:before {
+	content: "\e603";
+}
+
+.sobicon-zoom-out2:before {
+	content: "\e604";
+}
+
+.sobicon-zoom-in:before {
+	content: "\e605";
+}
+
+.sobicon-zoom-in2:before {
+	content: "\e606";
+}
+
+.sobicon-rotate-left:before {
+	content: "\e607";
+}
+
+.sobicon-rotate-right:before {
+	content: "\e608";
+}
+
+.sobicon-smaller:before {
+	content: "\e609";
+}
+
+.sobicon-larger:before {
+	content: "\e60a";
+}
+
+.sobicon-move-back:before {
+	content: "\e60b";
+}
+
+.sobicon-move-forward:before {
+	content: "\e60c";
+}
+
+.sobicon-text:before {
+	content: "\e60d";
+}
+
+.sobicon-fill:before {
+	content: "\e60e";
+}
+
+.sobicon-font:before {
+	content: "\ea5c";
+}
+
+.sobicon-shade:before {
+	content: "\e60f";
+}
