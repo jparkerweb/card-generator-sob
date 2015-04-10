@@ -177,7 +177,7 @@ gulp.task('scripts', function (callback) {
 	// task: build scripts
 	gulp.task('build-scripts', function () {
 		return gulp.src(
-				['./jquery.min.js', './jquery-ui.min.js', './rasterizeHTML.allinone.js', './lib.js', './card.js'],
+				['./jquery.min.js', './jquery-ui.min.js', './rasterizeHTML.allinone.js', './colors.js', './card.js'],
 				{ cwd: sourcePaths.JSBase }
 			)
 			.pipe(gulpif(minify, uglify()))
