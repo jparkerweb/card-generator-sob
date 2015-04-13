@@ -65,7 +65,8 @@
 			server: {
 				baseDir: "./dist/",
 				index: "card.html"
-			}
+			},
+			ghostMode: false //do not mirror clicks, scroll, and forms on all connected browsers by default
 		});
 	});
 	// reload
@@ -109,7 +110,7 @@ gulp.task('sass', function (callback) {
 			.pipe(gulpif(minify, csso()))
 			.pipe(header(banner, { pkg : pkg } ))
 			.pipe(gulp.dest(destPaths.CSS))
-			.pipe(browserSync.reload({stream: true}));
+			.pipe(browserSync.stream());
 	});
 
 
@@ -143,7 +144,7 @@ gulp.task('sass', function (callback) {
 				}))
 				.pipe(replace(/\.\.\/fonts\//gmi,"fonts/"))
 				.pipe(gulp.dest(destPaths.BASE))
-				.pipe(browserSync.reload({stream: true}));
+				.pipe(browserSync.stream());
 		});
 		// clean our temp css
 		gulp.task('clean-card-css', function () {
