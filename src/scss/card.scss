@@ -1,20 +1,13 @@
+// scss-lint:disable ImportantRule, DeclarationOrder, SelectorDepth
+
 @import "mixins";
 @import "sobicons";
 @import "fonts";
 @import "card-assets";
 
-
-@-moz-keyframes spin {
-    from { -moz-transform: rotate(0deg); }
-    to { -moz-transform: rotate(360deg); }
-}
-@-webkit-keyframes spin {
-    0%  {-webkit-transform: rotate(0deg);}
-    100% {-webkit-transform: rotate(360deg);}
-}
 @keyframes spin {
-    from {transform:rotate(0deg);}
-    to {transform:rotate(360deg);}
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
 }
 
 
@@ -29,7 +22,8 @@ body {
     background: #DFDDCE;
 }
 
-body, body *,
+body,
+body *,
 body *::before,
 body *::after {
     box-sizing: border-box;
@@ -37,8 +31,9 @@ body *::after {
 
 button {
   box-shadow: none;
-  border: none;
+  border: 0;
 }
+
 .button {
     position: relative;
     display: inline-block;
@@ -47,7 +42,7 @@ button {
     padding: 5px 10px;
     font-size: 22px;
     background: #BD3A23;
-    color: white;
+    color: #FFF;
     text-shadow: 1px 1px 1px #333;
     font-weight: 600;
     font-family: $font--berylium-regular;
@@ -59,7 +54,7 @@ button {
     text-transform: capitalize;
 
     &:hover {
-        background: maroon;
+        background: #800000;
     }
 
     &:first-of-type {
@@ -71,11 +66,11 @@ button {
         transition: all 300ms;
         opacity: 1;
 
-        &:hover{
+        &:hover {
             ~ .sourceElement {
-                transform: scale(0.444, 0.444);
+                transform: scale(.444, .444);
                 top: -334px;
-                left: 0px;
+                left: 0;
             }
         }
     }
@@ -93,31 +88,32 @@ button {
     }
 
     .draggable:hover {
-        outline: 1px solid red !important;
+        outline: 1px solid #F00 !important; //
         cursor: move;
     }
 
     .toolbar {
         display: block;
         position: absolute;
-        color: white;
+        color: #FFF;
         border-bottom: 1px solid #DDD;
 
         &.-top {
             top: 0;
         }
+
         &.-bottom {
             bottom: 0;
         }
     }
 
     .theHelper {
-        background: maroon;
+        background: #800000;
         border-radius: 20px;
         font-size: 22px;
         font-weight: 400;
         cursor: pointer;
-        color: white;
+        color: #FFF;
         padding: 2px 4px;
         vertical-align: top;
         position: relative;
@@ -125,7 +121,6 @@ button {
         height: 34px;
         text-align: center;
         line-height: 1.2;
-        cursor: pointer;
         border: 1px solid #222;
         text-shadow: none;
         display: inline-block;
@@ -146,31 +141,31 @@ button {
 
 
         &.theBefore {
-            background: teal;
+            background: #008080;
         }
 
         &.theAfter {
-            background: teal;
+            background: #008080;
         }
 
         &.theText {
-            background: teal;
+            background: #008080;
         }
 
         &.theFont {
-            background: teal;
+            background: #008080;
         }
 
         &.theShadow {
-            background: teal;
+            background: #008080;
         }
 
         &.theShadowColor {
-            background: teal;
+            background: #008080;
         }
 
         &.theColor {
-            background: teal;
+            background: #008080;
             padding: 0;
             border-radius: 3px;
             margin: 0;
@@ -210,7 +205,7 @@ button {
         right: -50px;
         font-family: "beryliumregular";
         background: #747474;
-        color: white;
+        color: #FFF;
         cursor: pointer;
         border-radius: 50%;
         z-index: 10;
@@ -219,18 +214,19 @@ button {
         padding-top: 2px;
         font-size: 50px;
         font-weight: 600;
-        border: 3px solid black;
+        border: 3px solid #000;
         line-height: 1.1;
 
         &:hover {
             background: #222;
-            color: white;
+            color: #FFF;
         }
     }
 
     .pdie-loading {
         display: none;
     }
+
     @include context('.card-output-wrapper', '.SoB.-drawing ~ .body-canvas.-drawing-card .card-output-wrapper') {
         .pdie-loading {
             position: absolute;
@@ -242,6 +238,7 @@ button {
         }
     }
 }
+
 .card-output {
     display: inline-block;
     vertical-align: top;
@@ -257,10 +254,10 @@ button {
             bottom: 0;
             left: 0;
             padding: 220px 0;
-            background: maroon;
+            background: #800000;
             border-radius: 5px;
             font-size: 60px;
-            color: white;
+            color: #FFF;
             text-align: center;
         }
     }
@@ -274,6 +271,7 @@ button {
         opacity: .2;
     }
 }
+
 .body-canvas.-drawing-card {
     display: none;
     position: absolute;
@@ -286,6 +284,7 @@ button {
         display: block;
     }
 }
+
 .body-canvas.-edit-text {
     display: none;
     position: absolute;
@@ -299,9 +298,9 @@ button {
     }
 }
 
-.vcontainer{
-    position:absolute;
-    transform: translate(-50%,-60%);
+.vcontainer {
+    position: absolute;
+    transform: translate(-50%, -60%);
     left: 50%;
     top: 60%;
 
@@ -311,8 +310,8 @@ button {
         padding: 15px 20px;
         font-family: arial, sans-serif;
         text-align: center;
-        background: maroon;;
-        color: white;
+        background: #800000;
+        color: #FFF;
         border-radius: 7px;
         box-shadow: 0 3px #777;
 
@@ -328,11 +327,10 @@ button {
         }
 
         .tips {
-
             .tip {
                 display: inline-block;
                 font-size: 20px;
-                padding: 15px 10px 10px 10px;
+                padding: 15px 10px 10px;
                 color: #CFB6B6;
             }
         }
@@ -344,6 +342,7 @@ button {
                 background: #217343;
             }
         }
+
         .button.-cancel {
             background: #7f8c8d;
 
@@ -362,10 +361,22 @@ button {
 }
 
 .save-card {
+    position: relative;
     display: block;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 160px;
+    margin-top: 5px;
+    padding: 3px 10px;
     text-align: center;
+    font-size: 21px;
     font-family: $font--berylium-italic;
     font-weight: 600;
+    text-decoration: none;
+    color: #FFF;
+    border: 1px solid #000;
+    border-radius: 4px;
+    background: #747474;
 }
 
 .browser-support {
@@ -377,7 +388,7 @@ button {
     background: #333;
     opacity: .9;
     font-size: 50px;
-    color: white;
+    color: #FFF;
     text-align: center;
     padding-top: 300px;
 
@@ -385,4 +396,5 @@ button {
     ~ .button { display: none; }
     ~ .card-output-wrapper { display: none; }
 }
+
 + .SoB { display: none; }

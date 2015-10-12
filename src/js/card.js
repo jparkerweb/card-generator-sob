@@ -9,7 +9,13 @@ var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
 var is_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
 
 
-
+$(document).ready(function() {
+    // download card as png/image
+    $("body").on("click", "#downloadCard", function(){
+        var dataURL = canvas.toDataURL('image/png');
+        this.href = dataURL;
+    });
+});
 
 function drawIt() {
     var $sourceElement = $(".sourceElement");
@@ -22,11 +28,13 @@ function drawIt() {
         canv.height = elemHeight;
         canv.id = "canvas";
 
-    var saveCardText = "<span class=\"save-card\">Right click and \"Save Image\"</span>";
+    var saveCardHTML = "";
+    saveCardHTML += "<a href=\"#\" class=\"save-card\" id=\"downloadCard\" download=\"my-card.png\">Download Card</a>";
+    // saveCardHTML += "<span class=\"save-card\">Right click and \"Save Image\"</span>";
 
     $(".card-output")
         .html(canv)
-        .append(saveCardText);
+        .append(saveCardHTML);
 
     var canvas = document.getElementById('canvas');
     $("body").addClass("-drawing-card");
