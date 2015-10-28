@@ -8,7 +8,7 @@
 	var notify = require('gulp-notify'),
 		clean = require('gulp-clean'),
 		gulpif = require('gulp-if'),
-		rubySass = require('gulp-ruby-sass'),
+		sass = require('gulp-sass'),
 		autoprefixer = require('gulp-autoprefixer'),
 		csso = require('gulp-csso'),
 		concat = require('gulp-concat'),
@@ -98,15 +98,10 @@ gulp.task('sass', function (callback) {
 	// task: compile SASS to CSS and AutoPrefix
 	gulp.task('build-sass', function () {
 
+		// -- compiler: gulp-sass (libsass) --
 		return gulp.src(sourcePaths.SCSS)
-			// HACK for rubySass:
-			//'sourcemap=none': true
-			// until pull request #114
-			// https://github.com/sindresorhus/gulp-ruby-sass/pull/114
-			// is merged into gulp-ruby-sass
-			// this hack forces rubysass to not return source maps
-			.pipe(rubySass({ style: 'expanded', 'sourcemap=none': true })).on('error', notify.onError({message: 'sass error: <%= error %>'}))
-			.pipe(autoprefixer('last 4 versions'))
+			.pipe(sass().on('error', notify.onError({ title: "Sass Error" })))
+			.pipe(autoprefixer({browsers: ['last 4 versions']}))
 			.pipe(gulpif(minify, csso()))
 			.pipe(header(banner, { pkg : pkg } ))
 			.pipe(gulp.dest(destPaths.CSS))
@@ -217,7 +212,7 @@ gulp.task('watch', function () {
 // ** be run from command **
 // ** line                **
 // *************************
-// ** gulp OR gulp alldev **
+// ** gulp OR gulp dev    **
 // *************************
 
 
@@ -233,9 +228,9 @@ gulp.task('default', function (callback) {
 		callback);
 });
 
-// -------------------------
-// --    task: alldev     --
-// -------------------------
+// ----------------------
+// --    task: dev     --
+// ----------------------
 gulp.task('dev', function (callback) {
 	minify = false;
 	runSequence(
