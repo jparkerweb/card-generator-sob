@@ -6,27 +6,27 @@
 @import "card-assets";
 
 @keyframes spin {
-    from {transform: rotate(0deg);}
-    to {transform: rotate(360deg);}
+	from {transform: rotate(0deg);}
+	to {transform: rotate(360deg);}
 }
 
 
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: $font--rockwell-condensed;
-    font-size: 18px;
-    color: #222;
-    line-height: 1.38;
-    background: #DFDDCE;
+	margin: 0;
+	padding: 0;
+	font-family: $font--rockwell-condensed;
+	font-size: 18px;
+	color: #222;
+	line-height: 1.38;
+	background: #DFDDCE;
 }
 
 body,
 body *,
 body *::before,
 body *::after {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 button {
@@ -35,366 +35,371 @@ button {
 }
 
 .button {
-    position: relative;
-    display: inline-block;
-    min-width: 100px;
-    margin: 10px 0 10px 5px;
-    padding: 5px 10px;
-    font-size: 22px;
-    background: #BD3A23;
-    color: #FFF;
-    text-shadow: 1px 1px 1px #333;
-    font-weight: 600;
-    font-family: $font--berylium-regular;
-    font-variant: small-caps;
-    text-align: center;
-    cursor: pointer;
-    border-radius: 3px;
-    user-select: none;
-    text-transform: capitalize;
+	position: relative;
+	display: inline-block;
+	min-width: 100px;
+	margin: 10px 0 10px 5px;
+	padding: 5px 10px;
+	font-size: 22px;
+	background: #BD3A23;
+	color: #FFF;
+	text-shadow: 1px 1px 1px #333;
+	font-weight: 600;
+	font-family: $font--berylium-regular;
+	font-variant: small-caps;
+	text-align: center;
+	cursor: pointer;
+	border-radius: 3px;
+	user-select: none;
+	text-transform: capitalize;
 
-    &:hover {
-        background: #800000;
-    }
+	&:hover {
+		background: #800000;
+	}
 
-    &:first-of-type {
-        margin-left: 10px;
-    }
+	&:first-of-type {
+		margin-left: 10px;
+	}
 
-    &.-preview {
-        cursor: zoom-out;
-        transition: all 300ms;
-        opacity: 1;
+	&.-preview {
+		cursor: zoom-out;
+		transition: all 300ms;
+		opacity: 1;
 
-        &:hover {
-            ~ .sourceElement {
-                transform: scale(.444, .444);
-                top: -334px;
-                left: 0;
-            }
-        }
-    }
+		&:hover {
+			~ .sourceElement {
+				transform: scale(.444, .444);
+				top: -334px;
+				left: 0;
+			}
+		}
+	}
 }
 
 .sourceElement {
-    display: inline-block;
-    position: relative;
-    width: 900px;
-    height: 1200px;
-    margin-left: 2px;
+	display: inline-block;
+	position: relative;
+	width: 900px;
+	height: 1200px;
+	margin-left: 2px;
 
-    &:hover .draggable {
-        outline: 1px solid #ADD8E6;
-    }
+	&:hover .draggable {
+		outline: 1px solid #ADD8E6;
+	}
 
-    .draggable:hover {
-        outline: 1px solid #F00 !important; //
-        cursor: move;
-    }
+	.draggable {
+		overflow: visible;
 
-    .toolbar {
-        display: block;
-        position: absolute;
-        color: #FFF;
-        border-bottom: 1px solid #DDD;
+		&:hover {
+			outline: 1px solid #F00 !important; //
+			cursor: move;
+		}
+	}
 
-        &.-top {
-            top: 0;
-        }
+	.toolbar {
+		display: block;
+		position: absolute;
+		color: #FFF;
+		border-bottom: 1px solid #DDD;
+		white-space: nowrap;
 
-        &.-bottom {
-            bottom: 0;
-        }
-    }
+		&.-top {
+			top: 0;
+		}
 
-    .theHelper {
-        background: #800000;
-        border-radius: 20px;
-        font-size: 22px;
-        font-weight: 400;
-        cursor: pointer;
-        color: #FFF;
-        padding: 2px 4px;
-        vertical-align: top;
-        position: relative;
-        width: 34px;
-        height: 34px;
-        text-align: center;
-        line-height: 1.2;
-        border: 1px solid #222;
-        text-shadow: none;
-        display: inline-block;
+		&.-bottom {
+			bottom: 0;
+		}
+	}
 
-        &.theX {}
+	.theHelper {
+		background: #800000;
+		border-radius: 20px;
+		font-size: 22px;
+		font-weight: 400;
+		cursor: pointer;
+		color: #FFF;
+		padding: 2px 4px;
+		vertical-align: top;
+		position: relative;
+		width: 34px;
+		height: 34px;
+		text-align: center;
+		line-height: 1.2;
+		border: 1px solid #222;
+		text-shadow: none;
+		display: inline-block;
 
-        &.theMinus {}
+		&.theX {}
 
-        &.thePlus {}
+		&.theMinus {}
 
-        &.theRotateLeft {}
+		&.thePlus {}
 
-        &.theRotateRight {}
+		&.theRotateLeft {}
 
-        &.theWidthSmaller {}
+		&.theRotateRight {}
 
-        &.theWidthLarger {}
+		&.theWidthSmaller {}
+
+		&.theWidthLarger {}
 
 
-        &.theBefore {
-            background: #008080;
-        }
+		&.theBefore {
+			background: #008080;
+		}
 
-        &.theAfter {
-            background: #008080;
-        }
+		&.theAfter {
+			background: #008080;
+		}
 
-        &.theText {
-            background: #008080;
-        }
+		&.theText {
+			background: #008080;
+		}
 
-        &.theFont {
-            background: #008080;
-        }
+		&.theFont {
+			background: #008080;
+		}
 
-        &.theShadow {
-            background: #008080;
-        }
+		&.theShadow {
+			background: #008080;
+		}
 
-        &.theShadowColor {
-            background: #008080;
-        }
+		&.theShadowColor {
+			background: #008080;
+		}
 
-        &.theColor {
-            background: #008080;
-            padding: 0;
-            border-radius: 3px;
-            margin: 0;
-            border: 0;
-        }
-    }
+		&.theColor {
+			background: #008080;
+			padding: 0;
+			border-radius: 3px;
+			margin: 0;
+			border: 0;
+		}
+	}
 
-    .image {
-        .theColor,
-        .theWidthSmaller,
-        .theWidthLarger,
-        .theText,
-        .theFont {
-            display: none;
-        }
+	.image {
+		.theColor,
+		.theWidthSmaller,
+		.theWidthLarger,
+		.theText,
+		.theFont {
+			display: none;
+		}
 
-        .theShadow {
-            left: 55px;
-        }
+		.theShadow {
+			left: 55px;
+		}
 
-        .theShadowColor {
-            left: 80px;
-        }
-    }
+		.theShadowColor {
+			left: 80px;
+		}
+	}
 }
 
 
 .card-output-wrapper {
-    display: inline-block;
-    position: relative;
-    vertical-align: top;
+	display: inline-block;
+	position: relative;
+	vertical-align: top;
 
-    .card-output-wrapper__close {
-        display: inline-block;
-        position: absolute;
-        top: -50px;
-        right: -50px;
-        font-family: "beryliumregular";
-        background: #747474;
-        color: #FFF;
-        cursor: pointer;
-        border-radius: 50%;
-        z-index: 10;
-        width: 60px;
-        height: 60px;
-        padding-top: 2px;
-        font-size: 50px;
-        font-weight: 600;
-        border: 3px solid #000;
-        line-height: 1.1;
+	.card-output-wrapper__close {
+		display: inline-block;
+		position: absolute;
+		top: -50px;
+		right: -50px;
+		font-family: "beryliumregular";
+		background: #747474;
+		color: #FFF;
+		cursor: pointer;
+		border-radius: 50%;
+		z-index: 10;
+		width: 60px;
+		height: 60px;
+		padding-top: 2px;
+		font-size: 50px;
+		font-weight: 600;
+		border: 3px solid #000;
+		line-height: 1.1;
 
-        &:hover {
-            background: #222;
-            color: #FFF;
-        }
-    }
+		&:hover {
+			background: #222;
+			color: #FFF;
+		}
+	}
 
-    .pdie-loading {
-        display: none;
-    }
+	.pdie-loading {
+		display: none;
+	}
 
-    @include context('.card-output-wrapper', '.SoB.-drawing ~ .body-canvas.-drawing-card .card-output-wrapper') {
-        .pdie-loading {
-            position: absolute;
-            top: 310px;
-            left: 123px;
-            display: inline-block;
-            z-index: 10;
-            animation: spin 5s infinite linear;
-        }
-    }
+	@include context('.card-output-wrapper', '.SoB.-drawing ~ .body-canvas.-drawing-card .card-output-wrapper') {
+		.pdie-loading {
+			position: absolute;
+			top: 310px;
+			left: 123px;
+			display: inline-block;
+			z-index: 10;
+			animation: spin 5s infinite linear;
+		}
+	}
 }
 
 .card-output {
-    display: inline-block;
-    vertical-align: top;
-    position: relative;
+	display: inline-block;
+	vertical-align: top;
+	position: relative;
 
-    @include context('.card-output', '.SoB.-drawing ~ .body-canvas.-drawing-card .card-output') {
-        &:after {
-            content: 'drawing card...';
-            position: absolute;
-            display: block;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            padding: 220px 0;
-            background: #800000;
-            border-radius: 5px;
-            font-size: 60px;
-            color: #FFF;
-            text-align: center;
-        }
-    }
+	@include context('.card-output', '.SoB.-drawing ~ .body-canvas.-drawing-card .card-output') {
+		&:after {
+			content: 'drawing card...';
+			position: absolute;
+			display: block;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			padding: 220px 0;
+			background: #800000;
+			border-radius: 5px;
+			font-size: 60px;
+			color: #FFF;
+			text-align: center;
+		}
+	}
 }
 
 .SoB {
-    text-align: center;
+	text-align: center;
 
-    body.-edit-text &,
-    body.-drawing-card & {
-        opacity: .2;
-    }
+	body.-edit-text &,
+	body.-drawing-card & {
+		opacity: .2;
+	}
 }
 
 .body-canvas.-drawing-card {
-    display: none;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+	display: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
 
-    body.-drawing-card & {
-        display: block;
-    }
+	body.-drawing-card & {
+		display: block;
+	}
 }
 
 .body-canvas.-edit-text {
-    display: none;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+	display: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
 
-    body.-edit-text & {
-        display: block;
-    }
+	body.-edit-text & {
+		display: block;
+	}
 }
 
 .vcontainer {
-    position: absolute;
-    transform: translate(-50%, -60%);
-    left: 50%;
-    top: 60%;
+	position: absolute;
+	transform: translate(-50%, -60%);
+	left: 50%;
+	top: 60%;
 
-    .content {
-        transition: all 300ms ease-in-out;
-        display: inline-block;
-        padding: 15px 20px;
-        font-family: arial, sans-serif;
-        text-align: center;
-        background: #800000;
-        color: #FFF;
-        border-radius: 7px;
-        box-shadow: 0 3px #777;
+	.content {
+		transition: all 300ms ease-in-out;
+		display: inline-block;
+		padding: 15px 20px;
+		font-family: arial, sans-serif;
+		text-align: center;
+		background: #800000;
+		color: #FFF;
+		border-radius: 7px;
+		box-shadow: 0 3px #777;
 
-        body.-edit-text & {
-            margin-top: 0;
-        }
+		body.-edit-text & {
+			margin-top: 0;
+		}
 
-        .edit-text {
-            width: 500px;
-            height: 200px;
-            font-size: 22px;
-            background: #E4E0CD;
-        }
+		.edit-text {
+			width: 500px;
+			height: 200px;
+			font-size: 22px;
+			background: #E4E0CD;
+		}
 
-        .tips {
-            .tip {
-                display: inline-block;
-                font-size: 20px;
-                padding: 15px 10px 10px;
-                color: #CFB6B6;
-            }
-        }
+		.tips {
+			.tip {
+				display: inline-block;
+				font-size: 20px;
+				padding: 15px 10px 10px;
+				color: #CFB6B6;
+			}
+		}
 
-        .button.-save {
-            background: #27ae60;
+		.button.-save {
+			background: #27ae60;
 
-            &:hover {
-                background: #217343;
-            }
-        }
+			&:hover {
+				background: #217343;
+			}
+		}
 
-        .button.-cancel {
-            background: #7f8c8d;
+		.button.-cancel {
+			background: #7f8c8d;
 
-            &:hover {
-                background: #595959;
-            }
-        }
-    }
+			&:hover {
+				background: #595959;
+			}
+		}
+	}
 }
 
 
 
 
 #canvas {
-    width: 400px;
+	width: 400px;
 }
 
 .save-card {
-    position: relative;
-    display: block;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 160px;
-    margin-top: 5px;
-    padding: 3px 10px;
-    text-align: center;
-    font-size: 21px;
-    font-family: $font--berylium-italic;
-    font-weight: 600;
-    text-decoration: none;
-    color: #FFF;
-    border: 1px solid #000;
-    border-radius: 4px;
-    background: #747474;
+	position: relative;
+	display: block;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 160px;
+	margin-top: 5px;
+	padding: 3px 10px;
+	text-align: center;
+	font-size: 21px;
+	font-family: $font--berylium-italic;
+	font-weight: 600;
+	text-decoration: none;
+	color: #FFF;
+	border: 1px solid #000;
+	border-radius: 4px;
+	background: #747474;
 }
 
 .browser-support {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: #333;
-    opacity: .9;
-    font-size: 50px;
-    color: #FFF;
-    text-align: center;
-    padding-top: 300px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: #333;
+	opacity: .9;
+	font-size: 50px;
+	color: #FFF;
+	text-align: center;
+	padding-top: 300px;
 
-    ~ .sourceElement { display: none; }
-    ~ .button { display: none; }
-    ~ .card-output-wrapper { display: none; }
+	~ .sourceElement { display: none; }
+	~ .button { display: none; }
+	~ .card-output-wrapper { display: none; }
 }
 
 + .SoB { display: none; }
