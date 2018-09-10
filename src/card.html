@@ -1,71 +1,71 @@
 <!DOCTYPE html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>SoB - Card Generator</title>
-        <meta name="description" content="Shadows of Brimstone - Character Sheet Generator">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" href="favicon.ico?v=0.0.1" type="image/x-icon">
-        <link data-js="mainStyleSheet" rel="stylesheet" href="css/card.css">
-    </head>
-    <body>
-        <div data-js="SoB" class="SoB">
-            <input type="file" id="file-input" style="display:none;"/>
-            <div class="button -text" id="btnAddText">add text</div>
-            <div class="button -image" id="btnAddImage">add image</div>
-            <div class="button -background" id="btnBackgroundNext">next background</div>
-            <div class="button -background" id="btnBackgroundPrev">prev background</div>
-            <div class="button -drawit" id="btnDrawit">draw card</div>
-            <div class="button -preview">Preview</div>
-            <br />
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>SoB - Card Generator</title>
+		<meta name="description" content="Shadows of Brimstone - Character Sheet Generator">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" href="favicon.ico?v=0.0.1" type="image/x-icon">
+		<link data-js="mainStyleSheet" rel="stylesheet" href="css/card.css">
+	</head>
+	<body>
+		<div data-js="SoB" class="SoB">
+			<input type="file" id="file-input" style="display:none;"/>
+			<div class="button -text" id="btnAddText">add text</div>
+			<div class="button -image" id="btnAddImage">add image</div>
+			<div class="button -background" id="btnBackgroundNext">next background</div>
+			<div class="button -background" id="btnBackgroundPrev">prev background</div>
+			<div class="button -drawit" id="btnDrawit">draw card</div>
+			<div class="button -preview">Preview</div>
+			<br />
 
-            <div class="sourceElement">
-                <style type="text/css">
-                    <!-- inject:customcss -->
-                    <!-- endinject -->
-                </style>
+			<div class="sourceElement">
+				<style type="text/css">
+					<!-- inject:customcss -->
+					<!-- endinject -->
+				</style>
 
-                <div class="card-input card-background-0"></div>
-            </div>
-        </div>
+				<div class="card-input card-background-0"></div>
+			</div>
+		</div>
 
-        <!-- card drawing area -->
-        <div class="body-canvas -drawing-card">
-            <div class="vcontainer">
-                <div class="content">
-                    <div class="card-output-wrapper font--bleeding-cowboys">
-                        <div class="card-output-wrapper__close" data-js="buttonClose">X</div>
-                        <img src="assets/dice-peril.png" class="pdie-loading">
-                        <div class="card-output"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+		<!-- card drawing area -->
+		<div class="body-canvas -drawing-card">
+			<div class="vcontainer">
+				<div class="content">
+					<div class="card-output-wrapper font--bleeding-cowboys">
+						<div class="card-output-wrapper__close" data-js="buttonClose">X</div>
+						<img src="assets/dice-peril.png" class="pdie-loading">
+						<div class="card-output"></div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-        <!-- edit text area -->
-        <div class="body-canvas -edit-text">
-            <div class="vcontainer">
-                <div class="content">
-                    <input type="hidden" value="" id="hiddenTextSource" />
-                    <textarea class="edit-text" id="editText"></textarea>
-                    <div class="tips">
-                        <div class="tip">**bold**</div>
-                        <div class="tip">++italic++</div>
-                        <div class="tip">__underline__</div>
-                        <div class="tip">!!smallcaps!!</div>
-                    </div>
-                    <div class="button-bar">
-                        <button type="button" class="button -save" data-js="buttonSave">Save</button>
-                        <button type="button" class="button -cancel" data-js="buttonCancel">Cancel</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+		<!-- edit text area -->
+		<div class="body-canvas -edit-text">
+			<div class="vcontainer">
+				<div class="content">
+					<input type="hidden" value="" id="hiddenTextSource" />
+					<textarea class="edit-text" id="editText"></textarea>
+					<div class="tips">
+						<div class="tip">**bold**</div>
+						<div class="tip">++italic++</div>
+						<div class="tip">__underline__</div>
+						<div class="tip">!!smallcaps!!</div>
+					</div>
+					<div class="button-bar">
+						<button type="button" class="button -save" data-js="buttonSave">Save</button>
+						<button type="button" class="button -cancel" data-js="buttonCancel">Cancel</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
-        <!-- hidden sass variables -->
-        <div data-js='sassVariableCardCount' class="sass-variable--card-count"></div>
-        <div data-js='sassVariableFontCount' class="sass-variable--font-count"></div>
+		<!-- hidden sass variables -->
+		<div data-js='sassVariableCardCount' class="sass-variable--card-count"></div>
+		<div data-js='sassVariableFontCount' class="sass-variable--font-count"></div>
 
-        <script src="js/card.min.js"></script>
-    </body>
+		<script src="js/card.min.js"></script>
+	</body>
 </html>
